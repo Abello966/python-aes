@@ -56,22 +56,13 @@ def mod_poly(p1, pmod):
     return p1
   
 def mult8bits(bit1, bit2):
-    #print("{} convertido para polinomio".format(hex(bit1)))
     p1 = int_to_poly(bit1)
-    #print(p1)
-    #print("{} convertido para polinomio".format(hex(bit2)))
     p2 = int_to_poly(bit2)
-    #print(p2)
-    #print("Multiplicacao de polinomios")
     ans = mult_poly(p1, p2)
-    #print(ans)
-    #print("Modulo 0x11B")
     ans = mod_poly(ans, int_to_poly(0x11B))
-    #print(ans)
-    #print("Converte em numero")
     return poly_to_int(ans)
 
-#calcula inversa pmod
+#calculates inverse related to pmod
 def inversemodpmod(bit1, bitmod):
     p1 = int_to_poly(bit1)
     pmod = int_to_poly(bitmod)
@@ -135,28 +126,14 @@ def mult32bits(bit1, bit2):
 
 def mixcolumns(bit1):
     cx = [0x02, 0x01, 0x01, 0x03]
-    print("Converte para Polinomio")
     pol1 = bits_to_poly(bit1)
-    print(list(map(hex, pol1)))
-    print("Multiplica Polinomios")
     ans = mult_32bit_poly(pol1, cx)
-    print(list(map(hex, ans)))
-    print("Modulo C(X)")
     ans = mult32bits(bit1, poly_to_bits(cx))
-    print(list(map(hex, ans)))
     return poly_to_bits(ans)
 
 def mixcolumnsinverse(bit1):
     invcx = [0x0E, 0x09, 0x0D, 0x0B]
-    print("Converte para Polinomio")
     pol1 = bits_to_poly(bit1)
-    print(list(map(hex, pol1)))
-    print("Multiplica Polinomios")
     ans = mult_32bit_poly(pol1, invcx)
-    print(list(map(hex, ans)))
-    print("Modulo C(X)")
     ans = mult32bits(bit1, poly_to_bits(invcx))
-    print(list(map(hex, ans)))
     return poly_to_bits(ans)
-
-
