@@ -38,4 +38,7 @@ def test_mod_poly():
 def test_mult8bits():
     assert aes.mult8bits(0x45, 0x0A) == 0x94
 
+def test_bits_to_poly():
+    assert aes.bits_to_poly(0x3D7656B2) == [0xB2, 0x56, 0x76, 0x3D]
+    assert aes.bits_to_poly(0xD7158891) == [0x91, 0x88, 0x15, 0xD7]
 
